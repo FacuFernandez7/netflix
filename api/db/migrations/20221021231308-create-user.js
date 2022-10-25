@@ -19,13 +19,18 @@ module.exports = {
         type: Sequelize.DATE
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true,
       },
       password: {
         type: Sequelize.STRING
       },
       isAdmin: {
         type: Sequelize.BOOLEAN
+      },
+      url_image: {
+        type: Sequelize.UUID,
+        unique: true
       },
       createdAt: {
         allowNull: false,

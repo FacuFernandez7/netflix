@@ -19,6 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     score: DataTypes.INTEGER,
     genre: DataTypes.ENUM('action', 'adventure', 'animated', 'comedy', 'drama', 'horror'),
     seasons: DataTypes.INTEGER,
+    url_image: DataTypes.UUID,
+    age: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Series',

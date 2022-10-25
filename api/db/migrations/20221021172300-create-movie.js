@@ -21,8 +21,13 @@ module.exports = {
       genre: {
         type: Sequelize.ENUM('action', 'adventure', 'animated', 'comedy', 'drama', 'horror')
       },
-      wallpaper: {
-        type: Sequelize.BLOB
+      url_image: {
+        allowNull: false,
+        type: Sequelize.UUID,
+        unique: true, 
+      },
+      age: {
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
