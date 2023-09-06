@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { getMovies } from '../services/MovieService'
+import { MovieForm } from './MovieForm'
 
 export const Movie = () => {
 
@@ -10,7 +11,6 @@ export const Movie = () => {
     async function getAllMovies() {
       const Allmovies = await getMovies()
       setMovies(Allmovies)
-      console.log("hola")
     }
     getAllMovies()
   }, [])
@@ -25,6 +25,7 @@ export const Movie = () => {
           )
         }) 
       }
+      <MovieForm/>
     </div>
   )
 }

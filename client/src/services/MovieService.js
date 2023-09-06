@@ -8,3 +8,7 @@ export const getMovies = async () => {
   return movies;
 };
 
+export const newMovie = async () => {
+  
+}
+
