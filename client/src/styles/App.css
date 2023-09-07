@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  background-color: #10427C;
+  height: 100vh;
+  color: white;
 }
 
 .App-logo {
@@ -14,14 +17,9 @@
 }
 
 .App-header {
-  /*background-color: #282c34;*/
-  background-color: #1A3BE3;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 10vh;
+  width: auto;
+  background-color: #8759AF;
 }
 
 .App-link {
@@ -37,6 +35,12 @@
   }
 }
 
+.App-container {
+  margin-left: 10vh;
+  margin-right: 10vh;
+  background-color: #092C61;
+}
+
 button {
   background-color: red;
   padding: 1vh 4vh;
@@ -44,4 +48,17 @@ button {
   border: none;
   font-family: sans-serif;
   color: white;
+}
+
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.card {
+  height: 100px;
+  width: 140px;
+  font-family: Arial;
+  margin: 2vh;
+  line-height: 120px;
 }

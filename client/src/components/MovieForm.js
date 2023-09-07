@@ -1,21 +1,45 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 
-export const MovieForm = () => {
+const initialForm = {
+  title: "",
+  synopsis: "",
+  score: "",
+  genre: "",
+  age: "",
+}
+
+export const MovieForm = ({createData,updateData,dataToEdit,setDataToEdit}) => {
+
+  const [form, setForm] = useState(initialForm);
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    //if(form.id === null){
+      createData(form)
+    //}
+    //else{
+    //  updateData(form)
+    //}
   }
+
+  const onChangeHandler = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    })
+  }
+
 
   return (
     <div>
-      <h1>New Movie!</h1>
-        <form>
-            <input type="text" placeholder="Insert a tittle of movie"></input> <br/>
-            <input type="text" placeholder="Insert a synopsis of movie"></input> <br/>
-            <input type="number" placeholder="Insert a score of movie"></input> <br/>
-            <input type="text" placeholder="Insert a genre of movie"></input> <br/>
-            <input type="number" placeholder="Insert a age of movie"></input> <br/>
-            <button type="submit" onSubmit={(e) => onSubmitHandler(e)}>Save</button>
+      <h2>New Movie!</h2>
+        <form onSubmit={(e) => onSubmitHandler(e)}>
+            <input type="text" name="title" onChange={onChangeHandler} placeholder="Title"></input> <br/>
+            <input type="text" name="synopsis" onChange={onChangeHandler} placeholder="Synopsis"></input> <br/>
+            <input type="number" name="score" onChange={onChangeHandler} placeholder="Score"></input> <br/>
+            <input type="text" name="genre" onChange={onChangeHandler} placeholder="Genre"></input> <br/>
+            <input type="number" name="age" onChange={onChangeHandler} placeholder="Age"></input> <br/>
+            <input type="submit" value="Save"></input>
         </form>
     </div>
   )

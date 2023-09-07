@@ -1,11 +1,20 @@
 import React, {useState, useEffect} from 'react'
-import { getMovies } from '../services/MovieService'
+import { getMovies, newMovie } from '../services/MovieService'
 import { MovieForm } from './MovieForm'
+import '../styles/App.css'
 
 export const Movie = () => {
 
   const [movies, setMovies] = useState([])
-  //const service = getMovies();
+  const [dataToEdit, setDataToEdit ] = useState(null);
+
+  const createData = (data) => {
+    newMovie(data)
+  }
+
+  const updateData = (data) => {}
+
+  const deleteData = (data) => {}
   
   useEffect(() => {
     async function getAllMovies() {
@@ -16,21 +25,23 @@ export const Movie = () => {
   }, [])
 
   return (
-    <div>
-      <h1>All Movies:</h1>
+    <>
+      <h1 className='App-header'>Movies</h1>
+      <section className='flex-container'>
       {
         movies.map((el,index) => {
           return (
-            <li key={index}>{el.title}</li>
+            <div className='card' key={index}>{el.title}</div>
           )
         }) 
       }
-      <MovieForm/>
-    </div>
+      </section>
+        <MovieForm
+          createData={createData} 
+          updateData={updateData}
+          dataToEdit={dataToEdit}
+          setDataToEdit={setDataToEdit}
+        />
+    </>
   )
 }
-
-  //{movies.map((movie) => {
-  //  return <li>{movie.title}</li>
-  //})
-  //}

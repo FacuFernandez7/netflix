@@ -8,7 +8,14 @@ export const getMovies = async () => {
   return movies;
 };
 
-export const newMovie = async () => {
-  
+export const newMovie = async (data) => {
+  let newMovie = {
+    title: data.title,
+    synopsis: data.synopsis,
+    score: data.score,
+    genre: data.genre,
+    age: data.age,
+  }
+  axios.post(baseURL, newMovie)
 }
 
