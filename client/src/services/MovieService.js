@@ -31,7 +31,7 @@ export const updateMovie = async (data) => {
     genre: data.genre,
     age: data.age,
   }
-  const result = await axios.put(`${baseURL}/${data.id}`, updateMovie).then(res => res);
+  const result = await axios.put(`${baseURL}/${data.id}`, updateMovie).then(res => res.data);
   return result;
 }
 

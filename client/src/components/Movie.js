@@ -29,11 +29,13 @@ export const Movie = () => {
   }
 
   const updateData = async (data) => {
+    
     try {
-      const newData = movies.map(el => el.id === data.id ? data : el)
+      const res = await updateMovie(data)
+      const newData = movies.map(el => el.id === res.id ? res : el)
       setMovies(newData)
     } catch (error) {
-      
+      console.log(error)
     }
   }
 
