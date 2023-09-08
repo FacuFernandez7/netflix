@@ -41,7 +41,7 @@
   background-color: #092C61;
 }
 
-button {
+.login-button {
   background-color: red;
   padding: 1vh 4vh;
   font-size: calc(2px + 2vmin);
@@ -60,5 +60,17 @@ button {
   width: 140px;
   font-family: Arial;
   margin: 2vh;
-  line-height: 120px;
+  
+}
+
+.edit-button{
+  width: auto;
+  color: black;
+  background-color: yellow;
+}
+
+.delete-button{
+  width: auto;
+  color: black;
+  background-color: red;
 }
