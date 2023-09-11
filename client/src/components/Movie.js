@@ -8,6 +8,18 @@ export const Movie = () => {
 
   const [movies, setMovies] = useState([])
   const [dataToEdit, setDataToEdit ] = useState({});
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => {
+    setShow(false)
+    setDataToEdit({})
+  }
+
+  const handleShow = (el) => {
+    setDataToEdit(el)
+    setShow(true);
+  }
+  
 
   useEffect(() => {
     async function getAllMovies() {
@@ -25,7 +37,7 @@ export const Movie = () => {
       alertMessage("Success", "The movie was successfully added", "success")
     }
     catch (e){
-     
+      alertMessage("Error", "Oops something went wrong", "error")
     }
   }
 
@@ -47,40 +59,47 @@ export const Movie = () => {
          async function (confirmed){
           if (confirmed){
             await deleteData(id)
-            alertMessage("Success", "The movie was successfully deleted", "success")
           }
         }
       )
   }
 
-  const deleteData = async id => {
-    await deleteMovie(id)
-    const newData = movies.filter(el => el.id !== id)
-    setMovies(newData)
+  const deleteData = async (id) => {
+    try {
+      await deleteMovie(id)
+      const newData = movies.filter(el => el.id !== id)
+      setMovies(newData)
+      alertMessage("Success", "The movie was successfully deleted", "success")
+    } catch (error) {
+      alertMessage("Error", "Oops something went wrong", "error")
+    }
   }
-
 
   return (
     <>
-      <h1 className='App-header'>Movies</h1>
+      <div className='App-header'>
+        <h1>Movies</h1>
+        
+      </div>
+      <button onClick={() => handleShow({})}>+</button>
       <section className='flex-container'>
       {
         movies.map((el,index) => {
           return (
             <div className='card' key={index}>{String(el.title).length > 12 ? String(el.title).slice(0, 15) + "..." : el.title}
-              <button className='edit-button' onClick={() => setDataToEdit(el)}>Edit</button>
+              <button className='edit-button' onClick={() => {handleShow(el)}}>Edit</button>
               <button className='delete-button' onClick={() => dialogConfirm(el.id)}>Delete</button>
             </div>
           )
         }) 
       }
       </section>
-        <MovieForm
-          createData={createData} 
-          updateData={updateData}
-          dataToEdit={dataToEdit}
-          setDataToEdit={setDataToEdit}
-        />
+      <MovieForm createData={createData} 
+                  updateData={updateData}
+                  dataToEdit={dataToEdit}
+                  show={show}
+                  handleClose={handleClose}
+                />
     </>
   )
 }

@@ -1,4 +1,7 @@
-import React, {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import '../styles/Modal.css'
 
 const initialForm = {
   title: "",
@@ -8,25 +11,14 @@ const initialForm = {
   age: "",
 }
 
-export const MovieForm = ({createData,updateData,dataToEdit,setDataToEdit}) => {
-
-  const [form, setForm] = useState(initialForm);
+export const MovieForm = ({createData,updateData,dataToEdit,show,handleClose}) => {
 
   useEffect(() => {
     setForm(dataToEdit)
   }, [dataToEdit])
-  
 
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
-    if(Object.keys(dataToEdit).length === 0){
-      createData(form)
-    }
-    else{
-      updateData(form)
-    }
-    resetHandler()
-  }
+  
+  const [form, setForm] = useState(initialForm);
 
   const onChangeHandler = (e) => {
     setForm({
@@ -35,21 +27,45 @@ export const MovieForm = ({createData,updateData,dataToEdit,setDataToEdit}) => {
     })
   }
 
-  const resetHandler = () => {
-    setForm(initialForm)
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    if(Object.keys(dataToEdit).length === 0){
+      createData(form)
+    }
+    else{
+      updateData(form)
+      
+    }
+    handleClose()
   }
 
   return (
-    <div>
-      <h2>New Movie!</h2>
-        <form onSubmit={(e) => onSubmitHandler(e)}>
-            <input type="text" name="title" value={form.title} onChange={onChangeHandler} placeholder="Title"></input> <br/>
-            <input type="text" name="synopsis" value={form.synopsis} onChange={onChangeHandler} placeholder="Synopsis"></input> <br/>
-            <input type="number" name="score" value={form.score} onChange={onChangeHandler} placeholder="Score"></input> <br/>
-            <input type="text" name="genre" value={form.genre} onChange={onChangeHandler} placeholder="Genre"></input> <br/>
-            <input type="number" name="age" value={form.age} onChange={onChangeHandler} placeholder="Age"></input> <br/>
-            <input type="submit" value="Save"></input><input type="reset" value="Cancel" onClick={resetHandler}></input>
+    <>
+      <Modal show={show} onHide={handleClose} className="modal">
+        <Modal.Header closeButton>
+          <Modal.Title>Movie</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className='modal-container'>
+        <form  onSubmit={(e) => onSubmitHandler(e)}>
+          <div >
+            <input type="text" name="title" className="input-form" value={form.title} onChange={onChangeHandler} placeholder="Title"></input> <br/>
+            <input type="text" name="synopsis" className="input-form" value={form.synopsis} onChange={onChangeHandler} placeholder="Synopsis"></input> <br/>
+            <input type="number" name="score" className="input-form" value={form.score} onChange={onChangeHandler} placeholder="Score"></input> <br/>
+            <input type="text" name="genre" className="input-form" value={form.genre} onChange={onChangeHandler} placeholder="Genre"></input> <br/>
+            <input type="number" name="age" className="input-form" value={form.age} onChange={onChangeHandler} placeholder="Age"></input> <br/>
+          </div>
+          
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" type="submit">
+              Save Changes
+            </Button>
+          </Modal.Footer>
         </form>
-    </div>
-  )
+        </Modal.Body>
+      </Modal>
+    </>
+  );
 }
