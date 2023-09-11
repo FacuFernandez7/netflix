@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import '../styles/App.css'
 
 export const NavbarLayout = () => {
   return (
@@ -28,7 +27,7 @@ export const NavbarLayout = () => {
             </li>
           </ul>
         </div>
-        <button className="login-button">Login</button>
+        <button>Login</button>
       </div>
     </nav>
   );
