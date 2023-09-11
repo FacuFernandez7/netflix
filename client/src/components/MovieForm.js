@@ -25,6 +25,7 @@ export const MovieForm = ({createData,updateData,dataToEdit,setDataToEdit}) => {
     else{
       updateData(form)
     }
+    resetHandler()
   }
 
   const onChangeHandler = (e) => {
@@ -34,6 +35,9 @@ export const MovieForm = ({createData,updateData,dataToEdit,setDataToEdit}) => {
     })
   }
 
+  const resetHandler = () => {
+    setForm(initialForm)
+  }
 
   return (
     <div>
@@ -44,7 +48,7 @@ export const MovieForm = ({createData,updateData,dataToEdit,setDataToEdit}) => {
             <input type="number" name="score" value={form.score} onChange={onChangeHandler} placeholder="Score"></input> <br/>
             <input type="text" name="genre" value={form.genre} onChange={onChangeHandler} placeholder="Genre"></input> <br/>
             <input type="number" name="age" value={form.age} onChange={onChangeHandler} placeholder="Age"></input> <br/>
-            <input type="submit" value="Save"></input>
+            <input type="submit" value="Save"></input><input type="reset" value="Cancel" onClick={resetHandler}></input>
         </form>
     </div>
   )

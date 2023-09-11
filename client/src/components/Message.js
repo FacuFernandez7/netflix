@@ -1,25 +1,25 @@
-import React from 'react'
 import swal from 'sweetalert'
 
+const TIMER = 5000;
 
-export const Message = ({title, text, icon, button = "acept"}) => {
-
-  const TIMER = 2000;
-
-  const showMessage = (title,text,icon,button) => {
+export const alertMessage = (title, text, icon) => {
     swal({
       title,
       text,
       icon,
-      button,
+      button: "Acept",
       timer: TIMER
-    })
-    
-  }
-
-  return (
-    <div>{showMessage()}</div>
-  )
+    }) 
 }
 
-export default Message
+export const confirmMessage =  (title, text, icon, callback) => {
+  swal({
+    title,
+    text,
+    icon,
+    buttons: ["No", "Yes"],
+  }).then(confirmed => {
+    callback(confirmed === true)
+  }) 
+}
+

@@ -18,8 +18,6 @@ export const newMovie = async ({title,synopsis,score, genre,age}) => {
     age
   }
   const result = await axios.post(baseURL, newMovie).then(res => res);
-  
-  console.log(result)
   return result;
 }
 
@@ -35,3 +33,7 @@ export const updateMovie = async (data) => {
   return result;
 }
 
+export const deleteMovie = async (id) => {
+  const result = await axios.delete(`${baseURL}/${id}`).then(res => res.status);
+  return result;
+}

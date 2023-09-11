@@ -31,14 +31,13 @@ module.exports.create = async (req, res) => {
     });
     return res.status(200).json(newMovie);
   } catch (error) {
-    return res.status(500).json("oops something went wrong" + error);
+    return res.status(500).json(error);
   }
 };
 
 module.exports.update = async (req, res) => {
   const { id } = req.params;
   const { title, synopsis, score, genre, age } = req.body;
-
   /*if (
     title === "" ||
     synopsis === "" ||
@@ -62,7 +61,7 @@ module.exports.update = async (req, res) => {
     const updatedMovie = await Movie.findByPk(id);
     return res.status(200).json(updatedMovie);
   } catch (error) {
-    return res.status(500).json("Oops, something went wrong!" + error);
+    return res.status(500).json(error);
   }
 };
 
@@ -74,6 +73,6 @@ module.exports.delete = async (req, res) => {
     });
     return res.status(200).json(deleteMovie);
   } catch (error) {
-    res.status(404).json("The movie not found");
+    res.status(500).json(error);
   }
 };
