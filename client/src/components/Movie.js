@@ -3,6 +3,7 @@ import { getMovies, newMovie, updateMovie, deleteMovie } from '../services/Movie
 import { MovieForm } from './MovieForm'
 import '../styles/App.css'
 import {alertMessage, confirmMessage} from './Message'
+import {Popup} from './Popup'
 
 export const Movie = () => {
 
@@ -19,7 +20,6 @@ export const Movie = () => {
     setDataToEdit(el)
     setShow(true);
   }
-  
 
   useEffect(() => {
     async function getAllMovies() {
@@ -94,12 +94,16 @@ export const Movie = () => {
         }) 
       }
       </section>
-      <MovieForm createData={createData} 
+      <Popup 
+        show={show}
+        handleClose={handleClose}
+      >
+        <MovieForm createData={createData} 
                   updateData={updateData}
                   dataToEdit={dataToEdit}
-                  show={show}
                   handleClose={handleClose}
                 />
+      </Popup>
     </>
   )
 }

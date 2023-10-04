@@ -27,7 +27,7 @@ export const NavbarLayout = () => {
             </li>
           </ul>
         </div>
-        <button>Login</button>
+        <button className="login-button">Login</button>
       </div>
     </nav>
   );

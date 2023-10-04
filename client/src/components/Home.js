@@ -10,10 +10,3 @@ export const Home = () => {
     </div>
   )
 }
-
-/* 
-<button>Login</button>
-        <h1>Movies and series unlimited!</h1>
-        <h2>Enjoy where you want!</h2>
-        <Movie/>
-*/
