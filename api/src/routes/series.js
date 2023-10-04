@@ -7,8 +7,8 @@ router.get("/", series_ctl.findAllSeries);
 router.get("/:id", series_ctl.findById);
 
 router.post("/", series_ctl.create);
-//
-//router.put("/:id", series_ctl.update);
+
+router.put("/:id", series_ctl.update);
 
 router.delete("/:id", series_ctl.delete);
 
