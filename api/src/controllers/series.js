@@ -1,4 +1,5 @@
 const db = require ('../../db/models/index');
+const { v4: uuidv4 } = require("uuid");
 const Series = db['Series'];
 
 
@@ -23,11 +24,10 @@ module.exports.create = async (req, res) => {
         synopsis,
         score,
         genre,
-        url_image,
         age,
         seasons,
     } = req.body
-
+    const url_image = uuidv4();
     try{
         const newSeries = await Series.create({
             title,

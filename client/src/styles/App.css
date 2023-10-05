@@ -16,6 +16,12 @@
   }
 }
 
+.Header {
+  height: 15vh;
+  width: auto;
+  background-color: #0D315A;
+}
+
 .App-header {
   height: 10vh;
   width: auto;

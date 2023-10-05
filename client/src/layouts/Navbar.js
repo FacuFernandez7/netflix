@@ -25,6 +25,9 @@ export const NavbarLayout = () => {
             <li className="nav-item">
               <Link className="nav-link" to="/movies">Movies</Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/series">Series</Link>
+            </li>
           </ul>
         </div>
         <button className="login-button">Login</button>

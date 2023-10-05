@@ -4,6 +4,7 @@ import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
 import './styles/App.css'
 import { Home } from './components/Home';
 import { Movie } from './components/Movie';
+import { Series } from './components/Series';
 
 function App() {
 
@@ -14,7 +15,8 @@ function App() {
         <Routes>
         <Route path="/" element={ <NavbarLayout/> }/>
           <Route index element={<Home/>}/>    
-          <Route path='movies' element={<Movie/>}/> 
+          <Route path='movies' element={<Movie/>}/>
+          <Route path='series' element={<Series/>}/> 
           <Route path='*' element={<Navigate replace to="/"/>}/>  
         </Routes>
       </BrowserRouter>
