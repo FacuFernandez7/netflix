@@ -21,15 +21,15 @@ export const newMovie = async ({title,synopsis,score, genre,age}) => {
   return result;
 }
 
-export const updateMovie = async (data) => {
+export const updateMovie = async ({id,title,synopsis,score, genre,age}) => {
   const updateMovie = {
-    title: data.title,
-    synopsis: data.synopsis,
-    score: data.score,
-    genre: data.genre,
-    age: data.age,
+    title,
+    synopsis,
+    score,
+    genre,
+    age,
   }
-  const result = await axios.put(`${baseURL}/${data.id}`, updateMovie).then(res => res.data);
+  const result = await axios.put(`${baseURL}/${id}`, updateMovie).then(res => res.data);
   return result;
 }
 

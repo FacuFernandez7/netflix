@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react'
-import { getMovies, newMovie, updateMovie, deleteMovie } from '../services/MovieService'
-import { MovieForm } from './MovieForm'
+import { getSeries, newSeries, updateSeries, deleteSeries } from '../services/SeriesServices'
+import { SeriesForm } from './SeriesForm'
 import '../styles/App.css'
 import {alertMessage, confirmMessage} from './Message'
 import {Popup} from './Popup'
 
-export const Movie = () => {
+export const Series = () => {
 
-  const [movies, setMovies] = useState([])
+  const [series, setSeries] = useState([])
   const [dataToEdit, setDataToEdit ] = useState({});
   const [show, setShow] = useState(false);
 
@@ -22,19 +22,19 @@ export const Movie = () => {
   }
 
   useEffect(() => {
-    async function getAllMovies() {
-      const Allmovies = await getMovies()
-      setMovies(Allmovies)
+    async function getAllSeries() {
+      const AllSeries = await getSeries()
+      setSeries(AllSeries)
     }
-    getAllMovies()
+    getAllSeries()
   }, [])
 
 
   const createData = async (data) => {
     try{
-      const result = await newMovie(data)
-      setMovies([...movies, result.data])
-      alertMessage("Success", "The movie was successfully added", "success")
+      const result = await newSeries(data)
+      setSeries([...series, result.data])
+      alertMessage("Success", "The series was successfully added", "success")
     }
     catch (e){
       alertMessage("Error", "Oops something went wrong", "error")
@@ -43,10 +43,10 @@ export const Movie = () => {
 
   const updateData = async (data) => {
     try {
-      const res = await updateMovie(data)
-      const newData = movies.map(el => el.id === res.id ? res : el)
-      setMovies(newData)
-      alertMessage("Success", "The movie was successfully updated", "success")
+      const res = await updateSeries(data)
+      const newData = series.map(el => el.id === res.id ? res : el)
+      setSeries(newData)
+      alertMessage("Success", "The series was successfully updated", "success")
     } catch (error) {
       alertMessage("Error", "Oops something went wrong", "error")
     }
@@ -54,7 +54,7 @@ export const Movie = () => {
 
   const dialogConfirm = (id) => {
       confirmMessage("Confirm",
-        "Are you sure you want to delete this movie?",
+        "Are you sure you want to delete this series?",
         "warning",
          async function (confirmed){
           if (confirmed){
@@ -66,10 +66,10 @@ export const Movie = () => {
 
   const deleteData = async (id) => {
     try {
-      await deleteMovie(id)
-      const newData = movies.filter(el => el.id !== id)
-      setMovies(newData)
-      alertMessage("Success", "The movie was successfully deleted", "success")
+      await deleteSeries(id)
+      const newData = series.filter(el => el.id !== id)
+      setSeries(newData)
+      alertMessage("Success", "The series was successfully deleted", "success")
     } catch (error) {
       alertMessage("Error", "Oops something went wrong", "error")
     }
@@ -78,13 +78,13 @@ export const Movie = () => {
   return (
     <>
       <div className='App-header'>
-        <h1>Movies</h1>
+        <h1>Series</h1>
         
       </div>
       <button onClick={() => handleShow({})}>+</button>
       <section className='flex-container'>
       {
-        movies.map((el,index) => {
+        series.map((el,index) => {
           return (
             <div className='card' key={index}>{String(el.title).length > 12 ? String(el.title).slice(0, 15) + "..." : el.title}
               <button className='edit-button' onClick={() => {handleShow(el)}}>Edit</button>
@@ -98,7 +98,7 @@ export const Movie = () => {
         show={show}
         handleClose={handleClose}
       >
-        <MovieForm createData={createData} 
+        <SeriesForm createData={createData} 
                   updateData={updateData}
                   dataToEdit={dataToEdit}
                   handleClose={handleClose}
